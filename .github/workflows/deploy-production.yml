@@ -3,7 +3,7 @@ name: Deploy to Production
 on:
   push:
     branches:
-      - main  # zmień na nazwę Twojej domyślnej gałęzi
+      - main  
 
 jobs:
   deploy:
@@ -13,10 +13,8 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    # Tutaj można dodać kroki do kompilacji, testów, kontroli jakości, itp.
-
     - name: Deploy to production
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       run: |
-        # Tutaj wpisz komendy lub skrypty, które odpowiadają za wdrożenie do środowiska produkcyjnego
+        # Miejsce na komendy lub skrypty, które odpowiadają za wdrożenie do środowiska produkcyjnego
         echo "Deploying to production..."
