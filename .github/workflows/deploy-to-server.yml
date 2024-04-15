@@ -1,0 +1,24 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    if: github.event_name == 'push' && github.event.head_commit.author.username == github.actor
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up environment
+      run: |
+        echo "Setting up production environment..."
+
+    - name: Build and deploy
+      run: |
+        echo "Building and deploying the application..."
+        # miejsce na kod do budowania i wdrażania aplikacji na serwerze produkcyjnym
