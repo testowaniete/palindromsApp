@@ -1,0 +1,38 @@
+name: Deploy to Test Environment
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.7'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Set up environment
+      run: |
+        mkdir test_environment
+        export TEST_ENVIRONMENT_PATH=$(pwd)/test_environment
+
+    - name: Deploy application
+      run: |
+        python app.py & 
+        sleep 5 
+
+    - name: Run tests
+      run: |
+        pytest tests/
