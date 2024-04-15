@@ -1,0 +1,16 @@
+name: Greetings
+
+on: [pull_request_target, issues]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+    - uses: actions/first-interaction@v1
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        issue-message: "Czesc, milo cie widziec w naszym repozytorium po raz pierwszy"
+        pr-message: "Czesc, milo cie widziec w naszym repozytorium, w razie pytan skontaktuj sie z administratorem droga meilowa"
